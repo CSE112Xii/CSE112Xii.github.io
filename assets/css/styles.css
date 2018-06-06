@@ -338,6 +338,9 @@ select {
 .body-purple .branding .text-highlight {
   color: #8A40A7;
 }
+.body-jeremy .branding .text-highlight {
+  color: #A52A2A;
+}
 .branding .text-bold {
   font-weight: 800;
   color: #fff;
@@ -1248,6 +1251,89 @@ select {
 }
 .author-profile {
   border-radius: 50%
+}
+
+.btn-jpcolor,
+a.btn-jpcolor {
+  background: #a0a02d;
+  border: 1px solid #a0a02d;
+  color: #fff !important;
+}
+.btn-jpcolor:hover,
+a.btn-jpcolor:hover,
+.btn-jpcolor:focus,
+a.btn-jpcolor:focus,
+.btn-jpcolor:active,
+a.btn-jpcolor:active,
+.btn-jpcolor.active,
+a.btn-jpcolor.active,
+.btn-jpcolor.hover,
+a.btn-jpcolor.hover {
+  background: #a0a02d;
+  color: #fff !important;
+  border: 1px solid a0a02d;
+}
+
+.body-jpcolor .branding .text-highlight {
+  color: #a0a02d;
+}
+
+.body-jpcolor .branding .icon {
+  color: #a0a02d;
+}
+
+.body-jpcolor .doc-header .doc-title {
+  color: #a0a02d;
+}
+
+.body-jpcolor .question {
+  color: #7b3995;
+}
+
+.body-jpcolor .table > thead > tr > th {
+  border-bottom-color: #b87fce;
+}
+
+.body-jpcolor .header {
+  border-color: #a0a02d;
+}
+.body-jpcolor a {
+  color: #a0a02d;
+}
+.body-jpcolor a:hover {
+  color: #a0a02d;
+}
+
+.body-jpcolor .doc-menu > li > a:hover,
+.body-jpcolor .doc-menu > li > a:focus {
+  color: #a0a02d;
+}
+
+.body-jpcolor .doc-menu > li.active > a {
+  color: #a0a02d;
+  border-color: #a0a02d;
+}
+
+.body-jpcolor .doc-sub-menu > li > a:hover {
+  color: #a0a02d;
+}
+
+.body-jpcolor .doc-sub-menu > li.active > a {
+  color: #a0a02d;
+}
+
+.body-jpcolor .promo-block {
+  background: #7b3995;
+}
+
+.cards-section .item-jpcolor .item-inner {
+  border-top: 3px solid #a0a02d;
+}
+.cards-section .item-jpcolor .item-inner:hover .title {
+  color: #a0a02d;
+}
+.cards-section .item-jpcolor .icon {
+  color: #a0a02d;
 }
 
 /* Extra small devices (phones, less than 768px) */
