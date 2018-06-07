@@ -1249,6 +1249,17 @@ select {
 .cards-section .item-purple .icon {
   color: #8A40A7;
 }
+
+.cards-section .item-yellow .item-inner {
+  border-top: 3px solid #b8d439;
+}
+.cards-section .item-yellow .item-inner:hover .title {
+  color: #b8d439;
+}
+.cards-section .item-yellow .icon {
+  color: #b8d439;
+}
+
 .author-profile {
   border-radius: 50%
 }
@@ -1336,15 +1347,6 @@ a.btn-jpcolor.hover {
   color: #a0a02d;
 }
 
-.cards-section .item-yellow .item-inner {
-  border-top: 3px solid #e3ea23;
-}
-.cards-section .item-yellow .item-inner:hover .title {
-  color: #e3ea23;
-}
-.cards-section .item-yellow .icon {
-  color: #e3ea23;
-}
 
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
