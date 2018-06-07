@@ -1336,6 +1336,16 @@ a.btn-jpcolor.hover {
   color: #a0a02d;
 }
 
+.cards-section .item-yellow .item-inner {
+  border-top: 3px solid #e3ea23;
+}
+.cards-section .item-yellow .item-inner:hover .title {
+  color: #e3ea23;
+}
+.cards-section .item-yellow .icon {
+  color: #e3ea23;
+}
+
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
   .cards-section .item-inner {
