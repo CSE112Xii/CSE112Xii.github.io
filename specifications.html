@@ -87,24 +87,104 @@
                                         <li>
                                             User creates an account for the first time
                                             <ul><li>Firebase authentication handles sign up with email.</li></ul>
-                                            <ul><li>Frontend makes a call to check_email to see if a user_id is associated with the email account the user authenticated with. 
+                                            <ul><li>Frontend makes a call to check_email to see if a user_id is associated 
+                                                with the email account the user authenticated with. 
                                                 Since this is a new account, there should be no binding.</li></ul>
                                             <ul><li>Frontend then asks the user for a unique user_id.</li></ul>
                                             <ul><li>Frontend makes a call to search to see if the user_id is taken. 
                                                 If taken, keep asking user to enter a user id and check until 
                                                 they enter something that is not already taken.</li></ul>
+                                            <ul><li>Frontend continues asks for account information, forms a JSON packet with 
+                                                the user credentials.</li></ul>
+                                            <ul><li>Frontend makes a call to create_user with user credentials attached.</li></ul>
                                         </li>
-                                        <li>I can logout of my account and ensure that my information is no longer available to view on the device.</li>
-                                        <li>I can change my account information.</li>
-                                        <li>I can add my friends so I can access their information.</li>
-                                        <li>I can use my friend's list to search a specific friend.</li>
-                                        <li>I can delete my friends from my friend's list.</li>
-                                        <li>I can keep my information and data private and secure.</li>
-                                        <li>I can verify that my information is private and secure so that my data is not misued or mishandled without my consent.</li>
-                                        <li>I can delete my profile and data from the server immediately.</li>
-                                        <li>I can easily view history of my activities.</li>
-                                        <li>I can interact with my friend's post by liking or commenting on their posts.</li>
-                                        <li>I can be notified when my friends have left a comment or liked my post.</li>
+                                        <li>
+                                            User logs in
+                                            <ul><li>Firebase authentication handles sign in with email.</li></ul>
+                                            <ul><li>Frontend makes a call to check_email to fetch the associated userId.</li></ul>
+                                            <ul><li>Frontend uses the userId to make calls to get_my_feeds and 
+                                                get_my_posts to gather the content to build the user’s wall.</li></ul>
+                                            <ul><li>Frontend renders user wall.</li></ul>
+                                        </li>
+                                        <li>
+                                            User searches for a friend
+                                            <ul><li>Frontend makes a call to is_friend to see if the userId provided 
+                                                is already a friend of the user.</li></ul>
+                                            <ul><li>Frontend makes a call to search to see if the userId is in our system.</li></ul>
+                                            <ul><li>If there is such a user and the user is already friends with us, 
+                                                we may show some more information about the user.</li></ul>
+                                            <ul><li>If there is such a user and the user is not friends yet, frontend 
+                                                will display option to send a request.</li></ul>
+                                        </li>
+                                        <li>
+                                            User adds a friend
+                                            <ul><li>Continuing from where a user searches for another user, 
+                                                Frontend makes a call to friend_request to send a friend 
+                                                request to the other user.</li></ul>
+                                            <ul><li>On the frontend of the other user, a friend request appears 
+                                                when we refresh and a call to get_pending_tasks was made 
+                                                inadvertently through refresh.</li></ul>
+                                            <ul><li>If the other user accepts the request, 
+                                                Frontend makes a call to friend_response.</li></ul>
+                                            <ul><li>Back to the frontend of the befriending user, as soon as friend response 
+                                                appears when we refresh and a call to get_pending_tasks was made inadvertently 
+                                                through refresh, the Frontend makes calls to add_friend_userid for both users 
+                                                to officially record them as friends.</li></ul>
+                                        </li>
+                                        <li>
+                                            User deletes a friend
+                                            <ul><li>Frontend makes a call to delete_friend_userid.</li></ul>
+                                        </li>
+                                        <li>
+                                            User creates a post
+                                            <ul><li>Frontend makes a call to create_post.</li></ul>
+                                        </li>
+                                        <li>
+                                            User updates a post
+                                            <ul><li>Frontend makes a call to update_post.</li></ul>
+                                        </li>
+                                        <li>
+                                            User deletes a post
+                                            <ul><li>Frontend makes a call to delete_post.</li></ul>
+                                        </li>
+                                        <li>
+                                            User comments on a post
+                                            <ul><li>Frontend makes a call to create_comment.</li></ul>
+                                        </li>
+                                        <li>
+                                            User updates a comment
+                                            <ul><li>Frontend makes a call to update_comment.</li></ul>
+                                        </li>
+                                        <li>
+                                            User deletes a comment
+                                            <ul><li>Frontend makes a call to delete_comment.</li></ul>
+                                        </li>
+                                        <li>
+                                            User replies to a comment
+                                            <ul><li>Frontend makes a call to create_reply.</li></ul>
+                                        </li>
+                                        <li>
+                                            User updates a reply
+                                            <ul><li>Frontend makes a call to update_reply.</li></ul>
+                                        </li>
+                                        <li>
+                                            User deletes a reply
+                                            <ul><li>Frontend makes a call to delete_reply.</li></ul>
+                                        </li>
+                                        <li>
+                                            User clicks a friend’s profile to view the friend’s posts
+                                            <ul><li>Frontend makes a call to get_friendposts.</li></ul>
+                                        </li>
+                                        <li>
+                                            User clicks on his own profile to see his/her homepage
+                                            <ul><li>Frontend makes a call to get_myposts.</li></ul>
+                                        </li>
+                                        <li>
+                                            User refreshes his page to get the most recent feed
+                                            <ul><li>Frontend makes a call to get_my_feed.</li></ul>
+                                            <ul><li>Frontend makes a call to get_pending_tasks to deal 
+                                                with friend requests or friend responses.</li></ul>
+                                        </li>
                                     </ol>
                                 </div>
                             </section>
@@ -123,10 +203,8 @@
                     <div class="doc-sidebar hidden-xs">
                         <nav id="doc-nav">
                             <ul id="doc-menu" class="nav doc-menu hidden-xs" data-spy="affix">
-                                <li>
-                                    <a class="scrollto" href="#user_stories">User Stories</a>
-                                    <a class="scrollto" href="#backend">Use Cases & API calls</a>
-                                </li>
+                                <li><a class="scrollto" href="#user_stories">User Stories</a></li>
+                                <li><a class="scrollto" href="#backend">Use Cases & API calls</a></li>
                                 <li><a class="scrollto" href="#functionality">Functionality</a></li>
                             </ul><!--//doc-menu-->
                         </nav>
