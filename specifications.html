@@ -79,7 +79,35 @@
                                     </ul>
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
-
+                            <section id="backend" class="doc-section">
+                                <h2 class="section-title">Use Cases and Corresponding API Calls</h2>
+                                <div class="section-block">
+                                    <ol>
+                                    <!-- <ul class="list list-inline">-->
+                                        <li>
+                                            User creates an account for the first time
+                                            <ul><li>Firebase authentication handles sign up with email.</li></ul>
+                                            <ul><li>Frontend makes a call to check_email to see if a user_id is associated with the email account the user authenticated with. 
+                                                Since this is a new account, there should be no binding.</li></ul>
+                                            <ul><li>Frontend then asks the user for a unique user_id.</li></ul>
+                                            <ul><li>Frontend makes a call to search to see if the user_id is taken. 
+                                                If taken, keep asking user to enter a user id and check until 
+                                                they enter something that is not already taken.</li></ul>
+                                        </li>
+                                        <li>I can logout of my account and ensure that my information is no longer available to view on the device.</li>
+                                        <li>I can change my account information.</li>
+                                        <li>I can add my friends so I can access their information.</li>
+                                        <li>I can use my friend's list to search a specific friend.</li>
+                                        <li>I can delete my friends from my friend's list.</li>
+                                        <li>I can keep my information and data private and secure.</li>
+                                        <li>I can verify that my information is private and secure so that my data is not misued or mishandled without my consent.</li>
+                                        <li>I can delete my profile and data from the server immediately.</li>
+                                        <li>I can easily view history of my activities.</li>
+                                        <li>I can interact with my friend's post by liking or commenting on their posts.</li>
+                                        <li>I can be notified when my friends have left a comment or liked my post.</li>
+                                    </ol>
+                                </div>
+                            </section>
                             <section id="functionality" class="doc-section">
                                 <h2 class="section-title">Functionality</h2>
                                 <div class="section-block">
@@ -92,16 +120,12 @@
 
                         </div><!--//content-inner-->
                     </div><!--//doc-content-->
-                    <div class="doc-sidebar">
+                    <div class="doc-sidebar hidden-xs">
                         <nav id="doc-nav">
                             <ul id="doc-menu" class="nav doc-menu hidden-xs" data-spy="affix">
-                                <li><a class="scrollto" href="#user_stories">User Stories</a></li>
                                 <li>
-                                    <a class="scrollto" href="#conveyor_belt">Conveyor Belt</a>
-                                    <ul class="nav doc-sub-menu">
-                                        <li><a class="scrollto" href="#first_version">First Version</a></li>
-                                        <li><a class="scrollto" href="#second_version">Second Version</a></li>
-                                    </ul>
+                                    <a class="scrollto" href="#user_stories">User Stories</a>
+                                    <a class="scrollto" href="#backend">Use Cases & API calls</a>
                                 </li>
                                 <li><a class="scrollto" href="#functionality">Functionality</a></li>
                             </ul><!--//doc-menu-->

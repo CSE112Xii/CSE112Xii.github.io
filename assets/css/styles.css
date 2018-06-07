@@ -1249,6 +1249,17 @@ select {
 .cards-section .item-purple .icon {
   color: #8A40A7;
 }
+
+.cards-section .item-yellow .item-inner {
+  border-top: 3px solid #b8d439;
+}
+.cards-section .item-yellow .item-inner:hover .title {
+  color: #b8d439;
+}
+.cards-section .item-yellow .icon {
+  color: #b8d439;
+}
+
 .author-profile {
   border-radius: 50%
 }
@@ -1335,6 +1346,7 @@ a.btn-jpcolor.hover {
 .cards-section .item-jpcolor .icon {
   color: #a0a02d;
 }
+
 
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
