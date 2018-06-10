@@ -52,7 +52,7 @@
             <div class="container">
                 <div id="doc-header" class="doc-header text-center">
                     <h1 class="doc-title"> Specifications</h1>
-                    <div class="meta"><i class="fa fa-clock-o"></i> Last updated: June 7th, 2018</div>
+                    <div class="meta"><i class="fa fa-clock-o"></i> Last updated: June 9th, 2018</div>
                 </div><!--//doc-header-->
                 <div class="doc-body">
                     <div class="doc-content">
@@ -87,134 +87,152 @@
                                         <li>
                                             User creates an account for the first time
                                             <ul><li>Firebase authentication handles sign up with email.</li></ul>
-                                            <ul><li>Frontend makes a call to check_email to see if a user_id is associated 
-                                                with the email account the user authenticated with. 
+                                            <ul><li>Frontend makes a call to check_email to see if a user_id is associated with the email account the user authenticated with.
                                                 Since this is a new account, there should be no binding.</li></ul>
                                             <ul><li>Frontend then asks the user for a unique user_id.</li></ul>
-                                            <ul><li>Frontend makes a call to search to see if the user_id is taken. 
-                                                If taken, keep asking user to enter a user id and check until 
+                                            <ul><li>Frontend makes a call to search to see if the user_id is taken.
+                                                If taken, keep asking user to enter a user id and check until
                                                 they enter something that is not already taken.</li></ul>
-                                            <ul><li>Frontend continues asks for account information, forms a JSON packet with 
-                                                the user credentials.</li></ul>
-                                            <ul><li>Frontend makes a call to create_user with user credentials attached.</li></ul>
                                         </li>
-                                        <li>
-                                            User logs in
-                                            <ul><li>Firebase authentication handles sign in with email.</li></ul>
-                                            <ul><li>Frontend makes a call to check_email to fetch the associated userId.</li></ul>
-                                            <ul><li>Frontend uses the userId to make calls to get_my_feeds and 
-                                                get_my_posts to gather the content to build the user’s wall.</li></ul>
-                                            <ul><li>Frontend renders user wall.</li></ul>
-                                        </li>
-                                        <li>
-                                            User searches for a friend
-                                            <ul><li>Frontend makes a call to is_friend to see if the userId provided 
-                                                is already a friend of the user.</li></ul>
-                                            <ul><li>Frontend makes a call to search to see if the userId is in our system.</li></ul>
-                                            <ul><li>If there is such a user and the user is already friends with us, 
-                                                we may show some more information about the user.</li></ul>
-                                            <ul><li>If there is such a user and the user is not friends yet, frontend 
-                                                will display option to send a request.</li></ul>
-                                        </li>
-                                        <li>
-                                            User adds a friend
-                                            <ul><li>Continuing from where a user searches for another user, 
-                                                Frontend makes a call to friend_request to send a friend 
-                                                request to the other user.</li></ul>
-                                            <ul><li>On the frontend of the other user, a friend request appears 
-                                                when we refresh and a call to get_pending_tasks was made 
-                                                inadvertently through refresh.</li></ul>
-                                            <ul><li>If the other user accepts the request, 
-                                                Frontend makes a call to friend_response.</li></ul>
-                                            <ul><li>Back to the frontend of the befriending user, as soon as friend response 
-                                                appears when we refresh and a call to get_pending_tasks was made inadvertently 
-                                                through refresh, the Frontend makes calls to add_friend_userid for both users 
-                                                to officially record them as friends.</li></ul>
-                                        </li>
-                                        <li>
-                                            User deletes a friend
-                                            <ul><li>Frontend makes a call to delete_friend_userid.</li></ul>
-                                        </li>
-                                        <li>
-                                            User creates a post
-                                            <ul><li>Frontend makes a call to create_post.</li></ul>
-                                        </li>
-                                        <li>
-                                            User updates a post
-                                            <ul><li>Frontend makes a call to update_post.</li></ul>
-                                        </li>
-                                        <li>
-                                            User deletes a post
-                                            <ul><li>Frontend makes a call to delete_post.</li></ul>
-                                        </li>
-                                        <li>
-                                            User comments on a post
-                                            <ul><li>Frontend makes a call to create_comment.</li></ul>
-                                        </li>
-                                        <li>
-                                            User updates a comment
-                                            <ul><li>Frontend makes a call to update_comment.</li></ul>
-                                        </li>
-                                        <li>
-                                            User deletes a comment
-                                            <ul><li>Frontend makes a call to delete_comment.</li></ul>
-                                        </li>
-                                        <li>
-                                            User replies to a comment
-                                            <ul><li>Frontend makes a call to create_reply.</li></ul>
-                                        </li>
-                                        <li>
-                                            User updates a reply
-                                            <ul><li>Frontend makes a call to update_reply.</li></ul>
-                                        </li>
-                                        <li>
-                                            User deletes a reply
-                                            <ul><li>Frontend makes a call to delete_reply.</li></ul>
-                                        </li>
-                                        <li>
-                                            User clicks a friend’s profile to view the friend’s posts
-                                            <ul><li>Frontend makes a call to get_friendposts.</li></ul>
-                                        </li>
-                                        <li>
-                                            User clicks on his own profile to see his/her homepage
-                                            <ul><li>Frontend makes a call to get_myposts.</li></ul>
-                                        </li>
-                                        <li>
-                                            User refreshes his page to get the most recent feed
-                                            <ul><li>Frontend makes a call to get_my_feed.</li></ul>
-                                            <ul><li>Frontend makes a call to get_pending_tasks to deal 
-                                                with friend requests or friend responses.</li></ul>
-                                        </li>
+                                        <li>I can logout of my account and ensure that my information is no longer available to view on the device.</li>
+                                        <li>I can change my account information.</li>
+                                        <li>I can add my friends so I can access their information.</li>
+                                        <li>I can use my friend's list to search a specific friend.</li>
+                                        <li>I can delete my friends from my friend's list.</li>
+                                        <li>I can keep my information and data private and secure.</li>
+                                        <li>I can verify that my information is private and secure so that my data is not misued or mishandled without my consent.</li>
+                                        <li>I can delete my profile and data from the server immediately.</li>
+                                        <li>I can easily view history of my activities.</li>
+                                        <li>I can interact with my friend's post by liking or commenting on their posts.</li>
+                                        <li>I can be notified when my friends have left a comment or liked my post.</li>
                                     </ol>
                                 </div>
                             </section>
-
-                            <section id="apiDoc" class="doc-section">
-                                <h2 class="section-title">API Documentation</h2>
-                                <div class="section-block">
-                                    <div class="screenshot-holder">
-                                            <img class="img-responsive" src="assets/images/specification/APIDoc_Page1.png" alt="API Documentation" /></a>
-                                        <h2><a href="assets/images/specification/Use_Cases_and_API_Doc.pdf" download>Click Here to Download</a></h2>
-                                    </div>
-                                </div><!--//section-block-->
-                            </section>
-
-                            <section id="firestore" class="doc-section">
-                                <h2 class="section-title">Firestore Schema</h2>
-                                <div class="section-block">
-                                    <div class="screenshot-holder">
-                                        <img class="img-responsive" src="assets/images/specification/firestore.png" alt="firestore Schema" /></a>
-                                    </div>
-                                </div>
-                            </section><!--//section-block-->
-
                             <section id="functionality" class="doc-section">
                                 <h2 class="section-title">Functionality</h2>
                                 <div class="section-block">
-                                    <h3 class="block-title">What we were able to realize concretly and how it works</h3>
+                                    <h3 class="block-title">How It Works</h3>
+                                    <video width="100%" controls>
+                                      <source src="assets/videos/frontend.mov" type="video/mp4">
+                                      Your browser does not support the video tag.
+                                    </video>
                                 </div><!--//section-block-->
+
+
                                 <div class="section-block">
-                                    <h3 class="block-title">Post Delete Comment Like Privacy</h3>
+                                    <h3 class="block-title">Walkthrough</h3>
+                                    <div id="myCarousel" class="carousel slide" data-interval="false" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                      <li data-target="#myCarousel" data-slide-to="1"></li>
+                                      <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    </ol>
+
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner data-interval="false"">
+                                      <div class="item active">
+                                        <h3 align="center">Home</h3>
+                                        <img src="assets/images/specification/frontend/home1.jpg">
+                                        <p align="center">This is the user's homepage. We are placed in the front page with the user profile,
+                                          various links (feed, friend management, settings), and ad. </p>
+                                      </div>
+
+                                      <div class="item">
+                                        <h3 align="center">Posting an Update</h3>
+                                        <img src="assets/images/specification/frontend/home2.jpg">
+                                        <p align="center">By clicking on "My Feed" at the top left corner, a
+                                          "Post an update" box will appear.
+                                        </p>
+                                      </div>
+
+                                      <div class="item">
+                                        <h3 align="center">-</h3>
+                                        <img src="assets/images/specification/frontend/post1.jpg">
+                                        <p align="center">After the user types in his/her update, he/she can now
+                                          post the update by clicking on "Publish".
+                                        </p>
+                                      </div>
+
+                                      <div class="item">
+                                        <h3 align="center">-</h3>
+                                        <img src="assets/images/specification/frontend/post2.jpg">
+                                        <p align="center">Note: In this video demonstration, we are unable to publish
+                                          the post since we are not connected to the backend yet.</p>
+                                      </div>
+
+                                      <div class="item">
+                                        <h3 align="center">3. Liking a Post</h3>
+                                        <img src="assets/images/specification/frontend/like2.jpg">
+                                        <p align="center">The user can like a post by clicking on the 'heart' icon. The red
+                                          heart will appear and the number accumulates.</p>
+                                      </div>
+
+                                      <div class="item">
+                                        <h3 align="center">4. Commenting on a Post</h3>
+                                        <img src="assets/images/specification/frontend/comment3.jpg">
+                                        <p align="center">The user can comment on a post by clicking on the 'speech bubble'
+                                          icon. Submit the comment by pressing enter.</p>
+                                      </div>
+
+                                      <div class="item">
+                                        <h3 align="center">-</h3>
+                                        <img src="assets/images/specification/frontend/comment4.jpg">
+                                        <p align="center">After comment has been published.</p>
+                                      </div>
+
+                                      <div class="item">
+                                        <h3 align="center">Editing a Comment</h3>
+                                        <img src="assets/images/specification/frontend/edit3.jpg">
+                                        <p align="center">The user can edit on a post by clicking on the 'note-pen' icon
+                                          (the middle icon in the above the textbox). After the edit is complete, submit by
+                                          pressing on enter.</p>
+                                      </div>
+
+                                      <div class="item">
+                                        <h3 align="center">Deleting a Comment</h3>
+                                        <img src="assets/images/specification/frontend/delete1.jpg">
+                                        <p align="center">The user can delete a post by clicking on the 'trashcan' icon.
+                                        The comment will be deleted off from the post.</p>
+                                      </div>
+
+                                      <div class="item">
+                                        <h3 align="center">Friend Management</h3>
+                                        <img src="assets/images/specification/frontend/friend2.jpg">
+                                        <p align="center">The user can manage his/her friend by clicking on the 'friends'
+                                          icon at the top right corner (the very left of the three icons). This will bring up the friend's
+                                          management page.</p>
+                                      </div>
+
+                                      <div class="item">
+                                        <h3 align="center">Return to User Profile</h3>
+                                        <img src="assets/images/specification/frontend/home0.jpg">
+                                        <p align="center">The user can return back to home page by clicking on the 'user'
+                                          icon at the top right corner (the middle of the three icons).</p>
+                                      </div>
+
+                                      <div class="item">
+                                        <h3 align="center">User Profile and Settings</h3>
+                                        <img src="assets/images/specification/frontend/setting1.jpg">
+                                        <p align="center">The user can edit his/her first/last name, date of birth
+                                          email address, and password by clicking on the 'tool' icon (the right of the
+                                          user's profile picture). After the user is finished with his/her changes, click on save.</p>
+                                      </div>
+                                    </div>
+
+                                    <!-- Left and right controls -->
+                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                      <span class="glyphicon glyphicon-chevron-left"></span>
+                                      <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                      <span class="glyphicon glyphicon-chevron-right"></span>
+                                      <span class="sr-only">Next</span>
+                                    </a>
+                                  </div>
+
+
+
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
 
@@ -223,10 +241,10 @@
                     <div class="doc-sidebar hidden-xs">
                         <nav id="doc-nav">
                             <ul id="doc-menu" class="nav doc-menu hidden-xs" data-spy="affix">
-                                <li><a class="scrollto" href="#user_stories">User Stories</a></li>
-                                <li><a class="scrollto" href="#backend">Use Cases & API calls</a></li>
-                                <li><a class="scrollto" href="#apiDoc">API Documentation</a></li>
-                                <li><a class="scrollto" href="#firestore">Fire Store Schema</a></li>
+                                <li>
+                                    <a class="scrollto" href="#user_stories">User Stories</a>
+                                    <a class="scrollto" href="#backend">Use Cases & API calls</a>
+                                </li>
                                 <li><a class="scrollto" href="#functionality">Functionality</a></li>
                             </ul><!--//doc-menu-->
                         </nav>
