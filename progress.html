@@ -53,7 +53,7 @@
             <div class="container">
                 <div id="doc-header" class="doc-header text-center">
                     <h1 class="doc-title"><span aria-hidden="true" ></span>Progress</h1>
-                    <div class="meta"><i class="fa fa-clock-o"></i>Last updated: June 6th, 2018</div>
+                    <div class="meta"><i class="fa fa-clock-o"></i>Last updated: June 14th, 2018</div>
                 </div><!--//doc-header-->
                 <div class="doc-body">
                     <div class="doc-content">
@@ -61,11 +61,101 @@
                             <section id="notes" class="doc-section">
                                 <h2 class="section-title" id="sprint_one">Sprint One</h2>
                                 <div class="section-block">
-                                    <h3 class="block-title" id="notes_one">Meeting Journals</h3>
-                                    <div class="screenshot-holder">
-                                        <img class="img-responsive" src="assets/images/progress/XII Board - Notes.jpg" alt="screenshot" /></a>
-                                        <p>*to be added with more DI/LE notes we have in the future*</p>
-                                    </div>
+                                    <h3 class="block-title" id="notes_two">Meeting Journals</h3>
+                                    <h5 align="center">Week 7 - Mon (5/18)</h5>
+                                    Frontend Discussion
+                                      <ul>
+                                        <li>Need key to view data of friends</li>
+                                        <li>Sending the key to the user, and he/she opens up the e-mail</li>
+                                        <ul>
+                                          <li>Need to find a better user experience</li>
+                                          <li>Can bring negative affect on website form</li>
+                                          <li>Browser storage wouuld be necessary</li>
+                                        </ul>
+                                        <li>Generate two keys in case of unfriending someone</li>
+                                        <li>Cloud should never be able to see the data that is transferred, or store it all on the server and hope it won't get hacked. </li>
+                                        <li>If the key is transferred over to the server then there is room for hack</li>
+                                        <li>When sample screen sketches are uploaded, move them to Git Wiki</li>
+                                        <li>No code developed so far</li>
+                                    </ul>
+                                    <br>
+
+
+                                    <h5 align="center">Week 7 - Thu (5/21)</h5>
+                                    Discussion
+                                      <ul>
+                                        <li>Implement Service Workers API and ensure it's a progressive web app (PWA)</li>
+                                        <li>Integrate PWA into toolchain</li>
+                                        <li>Scheduled meeting with Peter</li>
+                                        <li>Discuss with Peter where to put advertisements (UX)</li>
+                                        <li>Powell's Feedback:
+                                          <ul>
+                                            <li>Consider software lifetime</li>
+                                            <li>Block diagram</li>
+                                            <li>Use existing code</li>
+                                            <li>We need a working product</li>
+                                          </ul>
+                                        </li>
+                                    </ul>
+                                    <br>
+
+                                    <h5 align="center">Fri (5/22)</h5>
+                                    Best Tool for PeterBook Development
+                                    <ul>
+                                      <li>Push notifications</li>
+                                      <li>Chat as a service</li>
+                                      <li>Encryption: NodeJS Crypto Module</li>
+                                      <li>Ad services: Google Adsense</li>
+                                      <li>Asset/Image delivery as a service: MaxCDN (CDN) vs Cloudinary (image processing and management in cloud)</li>
+                                      <li>Authentication Services: Google Firebase</li>
+                                      <li>Technical Support Services: TalkTo, Zendesk (chat systems, cyber reliability)</li>
+                                      <li>Error Monitoring Services: Rollbar, PM2 (real-time crash reporting)</li>
+                                      <li>Component Libraries: Beautify (using these combination of library)</li>
+                                    </ul>
+
+                                    Meeting with Peter - Questions to Ask
+                                    <ul>
+                                      <li>Present simple model presentation: encryption (user and server key manager; who has the same key (friends, user, group)?</li>
+                                      <li>Need approval for encryption model</li>
+                                      <li>Question of what happens when we unfriend</li>
+                                      <li>Research findings & Costs</li>
+                                      <li>Subscription?</li>
+                                    </ul>
+
+                                    Frontend Development
+                                    <ul>
+                                      <li>Setting up authentication</li>
+                                      <li>Have feed component finished by Tuesday</li>
+                                    </ul>
+                                    <br>
+
+
+                                    <h5 align="center">Week 8 - Fri (5/29)</h5>
+                                    <ol>
+                                      <li>Frontend Progress</li>
+                                      <ul>
+                                        <li>Will be able to finish the mock up by tomorrow to be used for presentation.</li>
+                                        <li>Should we care about encryption anymore?</li>
+                                        <li>Should we store image here?</li>
+                                        <li>Log in : We can use Firebase authentication(Vincent)</li>
+                                        <li>We can store cookie, pull it from Google authentication</li>
+                                        <li>Each request: attach token and authentication field</li>
+                                        <li>Missing: Centralized State management (Vue) & Keep track of encryption key</li>
+                                        <li>Components: Most of them are ready</li>
+                                      </ul>
+
+                                      <li>Backend Progress</li>
+                                      <ul>
+                                        <li>Node JS might not work any more.</li>
+                                        <li>Send an encrypted message to Cloudinary?</li>
+                                        <li>Need to come up with a working version of API by Friday. (without privacy)</li>
+                                      </ul>
+                                    </ol>
+
+
+
+
+
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
 
@@ -343,6 +433,13 @@
                                               </div>
                                             </div>
 
+                                            <div class="carousel-inner data-interval="false"">
+                                              <div class="item active">
+                                                <h3 align="center">Creating a Group</h3>
+                                                <img src="assets/images/specification/frontend/home1.jpg">
+                                                <p align="center">asdf </p>
+                                              </div>
+
                                             <!-- Left and right controls -->
                                             <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                                               <span class="glyphicon glyphicon-chevron-left"></span>
@@ -353,6 +450,7 @@
                                               <span class="sr-only">Next</span>
                                             </a>
                                           </div>
+                                        </div>
 
 
 
