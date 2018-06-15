@@ -194,17 +194,32 @@
                                 <div id="javascript" class="section-block">
                                     <div class="code-block">
                                         <pre><code class="language-javascript">
-/*
-* method: POST
-* url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/user-create_userid
-* params: user profile: 
+- create_userid: creates a new user in database 
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/user-create_userid
+params: user profile: 
 {
     username: “haha”,
     key:”lala”
 }
+return:
+  if user doesn't exist:  	200:    return true
+  if user exists:         	200:    return  false
+  if add fails:           		error:  return error code
+
+
+
+- delete_userid: delete the specified user in database
+/*
+* method: DELETE
+* url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/user-delete_userid
+* params: JSON containing user_id
+{
+	user_id: “haha”
+}
 * return:
-*  if user doesn't exist:  	200:    return true
-*  if user exists:         	200:    return  false
+*  if user exists:         	200:    return true
+*  if user doesn't exist:  	200:    return false
 *  if add fails:           		error:  return error code
 */
 
