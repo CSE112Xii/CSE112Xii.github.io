@@ -193,6 +193,7 @@
                                 <h2 class="section-title">API Documentation</h2>
                                 <div id="javascript" class="section-block">
                                     <div class="code-block">
+                                        <h5>Create User ID</h5>
                                         <pre><code class="language-javascript">
 - create_userid: creates a new user in database 
 method: POST
@@ -206,23 +207,39 @@ return:
   if user doesn't exist:  	200:    return true
   if user exists:         	200:    return  false
   if add fails:           		error:  return error code
-
-
-
+                                        </code></pre>
+                                        <h5>Delete User ID</h5>
+                                        <pre><code class="language-javascript">
 - delete_userid: delete the specified user in database
-/*
-* method: DELETE
-* url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/user-delete_userid
-* params: JSON containing user_id
+
+method: DELETE
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/user-delete_userid
+params: JSON containing user_id
 {
 	user_id: “haha”
 }
-* return:
-*  if user exists:         	200:    return true
-*  if user doesn't exist:  	200:    return false
-*  if add fails:           		error:  return error code
-*/
+return:
+ if user exists:         	200:    return true
+ if user doesn't exist:  	200:    return false
+ if add fails:           		error:  return error code
 
+                                        </code></pre>
+                                        <h5>Update User ID</h5>
+                                        <pre><code class="language-javascript">
+- update_userid: updates the specified user profile in database
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/user-update_userid
+params: user profile JSON (match entries exactly)
+{
+    username: “haha”,
+    name: “hahahaha”,
+    Email:”lala@lala”,
+    DOB:”1/1/1”
+}
+return:
+if user does exist:             	200:    return true 
+if user doesn't exist:          	200:    return false 
+if add fails:                   		error:  return error code
                                         </code></pre>
                                     </div>
                                 </div>
