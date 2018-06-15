@@ -193,9 +193,12 @@
                                 <h2 class="section-title">API Documentation</h2>
                                 <div id="javascript" class="section-block">
                                     <div class="code-block">
+                                        <h3 id="user_API"> User Related APIs </h3>
+
                                         <h5>Create User ID</h5>
                                         <pre><code class="language-javascript">
-- create_userid: creates a new user in database 
+create_userid: creates a new user in database 
+
 method: POST
 url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/user-create_userid
 params: user profile: 
@@ -204,13 +207,13 @@ params: user profile:
     key:”lala”
 }
 return:
-  if user doesn't exist:  	200:    return true
-  if user exists:         	200:    return  false
-  if add fails:           		error:  return error code
+    if user doesn't exist:  	200:    return true
+    if user exists:         	200:    return  false
+    if add fails:           	error:  return error code
                                         </code></pre>
                                         <h5>Delete User ID</h5>
                                         <pre><code class="language-javascript">
-- delete_userid: delete the specified user in database
+delete_userid: delete the specified user in database
 
 method: DELETE
 url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/user-delete_userid
@@ -219,14 +222,16 @@ params: JSON containing user_id
 	user_id: “haha”
 }
 return:
- if user exists:         	200:    return true
- if user doesn't exist:  	200:    return false
- if add fails:           		error:  return error code
+    if user exists:         	200:    return true
+    if user doesn't exist:  	200:    return false
+    if add fails:           	error:  return error code
 
                                         </code></pre>
+                                        
                                         <h5>Update User ID</h5>
                                         <pre><code class="language-javascript">
-- update_userid: updates the specified user profile in database
+update_userid: updates the specified user profile in database
+
 method: POST
 url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/user-update_userid
 params: user profile JSON (match entries exactly)
@@ -237,10 +242,447 @@ params: user profile JSON (match entries exactly)
     DOB:”1/1/1”
 }
 return:
-if user does exist:             	200:    return true 
-if user doesn't exist:          	200:    return false 
-if add fails:                   		error:  return error code
+    if user does exist:             	200:    return true 
+    if user doesn't exist:          	200:    return false 
+    if add fails:                   	error:  return error code
                                         </code></pre>
+
+                                        <h5>Search User ID</h5>
+                                        <pre><code class="language-javascript">
+search_userid: search for the specified user in database
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/user-search_userid?user_id={id}
+params: user_id
+return:
+    if user exists:         	200:    return true 
+    if user doesn't exist:  	200:    return false 
+    if search fails:        	error:  return error code                                            
+                                        </code></pre>
+                                        
+                                        <h3 id="friend_API">Friend Related APIs</h3>
+
+                                        <h5>Is Friend</h5>
+                                        <pre><code class="language-javascript">
+is_friend: check if two users are friends 
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/friends-isFriend?user_id={id}&me_id={id}
+params: user_id, me_id
+return:
+    if user exists:         	200:    return whether friends(true/false) 
+    if user doesn't exist:  	200:    return false 
+    if search fails:       	    error:  return error code                                                
+                                        </code></pre>
+
+                                        <h5>Friend Request</h5>
+                                        <pre><code class="language-javascript">
+friend_request: me_id sends user_id a friend request (not friends yet)
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/friends-friend_request?user_id={id}&me_id={id}
+params: user_id & me_id
+return:
+    if user exists:         	200:    return true  
+    if user doesn't exist:  	200:    return false 
+    if add fails:           	error:  return error code                                      
+                                        </code></pre>
+
+                                        <h5>Friend Response</h5>
+                                        <pre><code class="language-javascript">
+friend_response: me_id sends user_id a friend response(upon seeing friend request) 
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/friends-friend_response?user_id={id}&me_id={id}
+params: user_id & me_id
+return:
+    if user exists:         	200:    return true  
+    if user doesn't exist:  	200:    return false  
+    if add fails:           	error:  return error code                                              
+                                        </code></pre>
+
+                                        <h5>Add Friend User ID</h5>
+                                        <pre><code class="language-javascript">
+add_friend_userid: me_id & user_id becomes friend(upon seeing friend response)
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/friends-add_friend_userid?user_id={id}&me_id={id}
+params: user_id & me_id
+return:
+if user exists:         	200:    return "success" / “already friends” with status code: 1
+if user doesn't exist:  	200:    return "no such user/me” with status code: 0
+if add fails:           	error:  return error code                                                               
+                                        </code></pre>
+
+                                        <h5>Delete Friend User ID</h5>
+                                        <pre><code class="language-javascript">
+delete_friend_userid: user_id and me_id becomes strangers 
+
+method: DELETE
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/friends-delete_friend_userid
+params: JSON containing user_id & me_id
+{
+    user_id: “haha”,
+    me_id:”lala”
+}
+return:
+    if user exists:         	200:    return "friendship ends!" or "you're not friends!" 
+    if user doesn't exist:  	200:    return "no such user" or "no me" 
+    if fails:           		error:  return error code                                                     
+                                        </code></pre>
+
+                                        <h5>Clear Friend Request</h5>
+                                        <pre><code class="language-javascript">
+clear_friend_request: clears all user_id’s friend requests
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/friends-clear_friend_request?user_id={id}
+params: user_id
+return:
+    if user exists:         	200:    return true  
+    if user doesn't exist:  	200:    return false 
+    if add fails:           	error:  return error code                                                                                                     
+                                        </code></pre>
+
+                                        <h5>Clear Friend Response</h5>
+                                        <pre><code class="language-javascript">
+clear_friend_response: clears all user_id’s friend response
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/friends-clear_friend_response?user_id={id}
+params: user_id
+return:
+    if user exists:         	200:    return true  
+    if user doesn't exist:  	200:    return false  
+    if add fails:           	error:  return error code                                                                     
+                                        </code></pre>
+
+                                        <h5>Get Friend Request</h5>
+                                        <pre><code class="language-javascript">
+get_friend_request: get user_id’s friend requests
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/friends-get_friend_request?user_id={id}
+params: user_id
+return:
+    if user exists:         	200:    return true 
+    if user doesn't exist:  	200:    return false  
+    if add fails:           	error:  return error code           
+                                        </code></pre>
+
+                                        <h3 id="group_API">Group Related APIs</h3>
+
+                                        <h5>Set Group</h5>
+                                        <pre><code class="language-javascript">
+set_group: set the group_id for multiple friends 
+
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/groups-set_group
+params: user_ids(array of user_id), me_id, group_id in JSON
+{
+    user_ids: [“haha”, “hahaha”,”jaja”],
+	me_id:”lala”,
+	group_id:”family”
+}
+return:
+    if each user is a friend of me: 	set is true(regardless of user current group)	
+    if not: 			                return false and code 0
+    else: 				                return error code
+                                        </code></pre>
+
+                                        <h5>Unset Group</h5>
+                                        <pre><code class="language-javascript">
+unset_group: release multiple friends from the same group 
+
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/groups-unset_group
+params: me_id, group_id
+{
+    me_id: “haha”,
+    group_id:”kaka”
+}
+return:
+    if each user is a friend of me: 	unset is true (regardless of user's current group)
+    if not: 			                return false and code 0
+    else: 				                return error code
+                                        </code></pre>
+
+                                        <h3 id="post_API">Post Related APIs</h3>
+
+                                        <h5>Create Post</h5>
+                                        <pre><code class="language-javascript">
+create_post: when user creates a new post
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/posts-create_post
+params: post profile JSON: requires user_id; group_id is defaulted “0” if not specified
+{
+    user_id:”yil279”, 
+    (optional)group_id:”family”, 
+    content:”I love ice cream”,
+    (optional)picture:”URL”,
+    key:”some key” 
+}
+return:
+    if create post is successful:   	return post_id in posts(collection) with code 1
+    if user_id: 				        return "no such user" with code 0
+    if not:                         	return error code
+                                        </code></pre>
+
+                                        <h5>Update Post</h5>
+                                        <pre><code class="language-javascript">
+update_post: when user updates his/her post
+
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/posts-update_post
+params: post profile JSON: requires user_id & post_id
+{
+    user_id:”yil279”, 
+    (optional)group_id:”family”, 
+    content:”I love ice cream”,
+    (optional)picture:”URL”,
+    key:”some key”,
+    post_id:”some post id” 
+}
+return:
+    if update post is successful:   	return "post updated!" or "this post is not yours!" with code 1
+    if no such post/user:           	return "no such post/user" with code 0
+    if not:                         	return error code
+                                        </code></pre>
+
+                                        <h5>Delete Post</h5>
+                                        <pre><code class="language-javascript">
+delete_post: when user deletes his/her post 
+
+method: DELETE
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/posts-delete_post
+params: post profile JSON
+{
+    user_id:”yil279”, 
+    post_id:”some post id” 
+}
+return:
+    if delete post is successful:   	return "post deleted!" or "this post is not yours!" with code 1
+    if post/user is invalid:        	return "no such post/user" with code 0
+    if not:                         		return error code
+                                        </code></pre>
+
+                                        <h5>Get Post</h5>
+                                        <pre><code class="language-javascript">
+get_mypost: when user visits his/her homepage 
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/posts-get_mypost?user_id={id}
+params: user_id
+return:
+    if get is successful:   	return user's posts (no comments/replies) with code 1
+    if user doesn't exist:  	return {} with code 0
+    if not:                 	return error code
+                                        </code></pre>
+
+                                        <h5>Get Friend's Post</h5>
+                                        <pre><code class="language-javascript">
+get_friendpost: when user visits a friend’s homepage
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/posts-get_friendpost?user_id={id}&friend_id={id}
+params: user_id, me_id
+return:
+    if get is successful:                        return friend's posts with code 1
+    if user doesn't exist or not friends:        return {} with code 0
+    if not:                                      return error code
+                                        </code></pre>
+
+                                        <h5>Get My Feed</h5>
+                                        <pre><code class="language-javascript">
+get_myfeed: when user visits his/her main page 
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/feed-get_myfeed?user_id={id}
+params: user_id
+return:
+    if get is successful:   	return user's feeds with code 1
+    if user doesn't exist:  	return {} with code 0
+    if not:                 	return error code
+                                        </code></pre>
+
+                                        <h5>Like Post</h5>
+                                        <pre><code class="language-javascript">
+like_post: when user likes a post
+
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/feed-like_post
+params: user_id & post_id
+{
+    user_id:”yil279”, 
+    post_id:”some post id” 
+}
+return:
+    if like post is successful:     return true/false if user not liked/liked before 
+    if not such user: 			    return false
+    if not:                         return error code
+                                        </code></pre>
+
+                                        <h5>Unlike Post</h5>
+                                        <pre><code class="language-javascript">
+unlike_post: when user unlikes a post 
+
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/feed-unlike_post
+params: user_id & post_id
+{
+    user_id:”yil279”, 
+    post_id:”some post id” 
+}
+return:
+    if like post is successful:   	return true/false if user liked/unliked before 
+    if not such user: 			    return false
+    if not:                         return error code
+                                        </code></pre>
+
+                                        <h3 id="comment_API">Comment Related APIs</h3>
+
+                                        <h5>Create Comment</h5>
+                                        <pre><code class="language-javascript">
+create_comment: when user creates a comment
+
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/feed-create_comment
+params: post_id,user_id, comment JSON (must have all four) 
+{
+    user_id:”yil279”, 
+    content:”some content”,
+    key:”some key”,
+    post_id:”some post id” 
+}
+return:
+    if comment is successful:   	return comment_id with code 1
+    if invalid user/post:       	return “no such user” or “no such post” with code 0
+    if else:                   		return error
+                                        </code></pre>
+
+                                        <h5>Update Comment</h5>
+                                        <pre><code class="language-javascript">
+update_comment: when user changes comment
+
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/feed-update_comment
+params: post_id,user_id, comment_id,comment JSON (Can not change key at this moment) 
+{
+    user_id:”yil279”, 
+    content:”some content”,
+    comment_id:”some comment_id”,
+    post_id:”some post id” 
+}
+return:
+    if update is successful:    		return comment_id with code 1
+    if invalid user/post/comment_id:       	return “no such user/post/comment!” with 0
+    if else:                    			return error
+                                        </code></pre>
+
+                                        <h5>Delete Comment</h5>
+                                        <pre><code class="language-javascript">
+delete_comment: when user deletes comment
+
+method: DELETE
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/feed2-delete_comment
+params: post_id,user_id, comment_id,comment JSON
+{
+    user_id:”yil279”, 
+    comment_id:”some comment_id”,
+    post_id:”some post id” 
+}
+return:
+    if delete is successful:    		return "success" with code 1
+    if invalid user/post/comment:     return “no such post/user/comment!” with code 0
+    if else:                    		return error
+                                        </code></pre>
+
+                                        <h5>Show Comment</h5>
+                                        <pre><code class="language-javascript">
+show_comment: when the user sees comment
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/feed-show_comment?post_id={id}
+params: post_id
+return:
+    if show is successful:  	return JSON of all comments (no replies) 
+    if invalid user/post:   	return “no such post!” with code 0
+    if else:                	return error
+                                        </code></pre>
+
+                                        <h3 id="reply_API">Reply Related APIs</h3>
+
+                                        <h5>Create Reply</h5>
+                                        <pre><code class="language-javascript">
+create_reply: when the user creates a reply
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/feed2-create_reply
+params: post_id,user_id, comment_id, reply JSON (must have 5) 
+{
+    user_id:”yil279”, 
+    content:”some content”,
+    comment_id:”some comment_id”,
+    post_id:”some post id”,
+    key:”some key”
+}
+return:
+    if reply is successful:   	    return reply_id
+    if invalid user/post:           return “no such user/comment!” code 0
+    if else:                   	    return error
+                                        </code></pre>
+
+                                        <h5>Update Reply</h5>
+                                        <pre><code class="language-javascript">
+update_reply: when the user updates a reply
+
+method: POST
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/feed2-update_reply
+params: post_id,user_id, comment_id,reply_id, reply JSON (can not change key) 
+{
+    user_id:”yil279”, 
+    content:”some content”,
+    comment_id:”some comment_id”,
+    post_id:”some post id”,
+    reply_id:”some reply_id”
+}
+return:
+    if update is successful:        return reply_id
+    if invalid user/post:       	return “no such user/comment/post/reply!” with code 0
+    if else:                    	return error
+                                        </code></pre>
+
+                                        <h5>Delete Reply</h5>
+                                        <pre><code class="language-javascript">
+delete_reply: When the user deletes a reply
+
+method: DELETE
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/feed2-delete_reply
+params: post_id,user_id, comment_id,reply_id, reply JSON
+{
+    user_id:”yil279”, 
+    comment_id:”some comment_id”,
+    post_id:”some post id”,
+    reply_id:”some reply_id”
+}
+return:
+    if delete is successful:    	return "success"
+    if invalid user/post:       	return “no such user/comment/post/reply!” with code 0
+    if else:                    	return error
+                                        </code></pre>
+
+                                        <h5>Show Reply</h5>
+                                        <pre><code class="language-javascript">
+show_reply: When the user sees a reply
+
+method: GET
+url: https://us-central1-cse112sp18teamxii.cloudfunctions.net/feed2-show_reply?post_id={id}&comment_id
+params: post_id,comment_id 
+return:
+    if show is successful:          return JSON of all replies
+    if invalid user/post:           return “no such comment/post!” code 0
+    if else:                        return error
+                                        </code></pre>
+
                                     </div>
                                 </div>
                             </section><!--//section-block-->
@@ -248,9 +690,35 @@ if add fails:                   		error:  return error code
                             <section id="firestore" class="doc-section">
                                 <h2 class="section-title">Firestore Schema</h2>
                                 <div class="section-block">
-                                    <div class="screenshot-holder">
-                                        <img class="img-responsive" src="assets/images/specification/firestore.png" alt="firestore Schema" /></a>
-                                    </div>
+                                        <pre><code class="language-javascript">
+All keys and all values are STRINGS.
+
+Users – collection where documents are indexed by user_id
+User details (first name, last name, birthdays, etc.)
+groups - dictionary where a key is group name (string) and a value is array of user_ids(strings): “0” is default: user can not manipulate this group 
+{
+    “0” : [“friend1_id”, “friend2_id”, …],
+    “family” : [“dad_id”, “mom_id”, …],
+    …
+} 	
+myPosts – array of post_ids
+[ “mypost1_id”, “mypost2_id”, …]
+myFeeds – array of post_ids
+[ “friendpost1_id”, “friendpost2_id”, …]
+friendRequests – array of user_ids
+[ “friendA_id”, …]
+friendResponses – array of user_ids
+[ “friend_id”, …]
+
+Posts – collection where documents are indexed by postId
+post details (content, timestamp, group_id, etc.)
+group_id: if specified: must be valid, otherwise create_post will fail. if not specified, group_id is by default “0”
+Comments – collection where documents are indexed by commentId
+comment details (user_id, content, ect.)
+Replies – collection where documents are indexed by replyId
+Reply details (user_id, content, etc.)
+                                                
+                                        </code></pre>
                                 </div>
                             </section><!--//section-block-->
 
@@ -267,7 +735,18 @@ if add fails:                   		error:  return error code
                             <ul id="doc-menu" class="nav doc-menu hidden-xs" data-spy="affix">
                                 <li> <a class="scrollto" href="#user_stories"> User Stories </a></li>
                                 <li><a class="scrollto" href="#use_cases"> Use Cases</a></li>
-                                <li><a class="scrollto" href="#apiDoc"> API Documentation </a></li>
+                                <li>
+                                    <a class="scrollto" href="#apiDoc"> API Documentation </a>
+                                    <ul class="nav doc-sub-menu">
+                                        <li><a class="scrollto" href="#user_API"> User Related </a></li>
+                                        <li><a class="scrollto" href="#friend_API"> Friend Related </a></li>
+                                        <li><a class="scrollto" href="#group_API"> Group Related </a></li>
+                                        <li><a class="scrollto" href="#post_API"> Post Related </a></li>
+                                        <li><a class="scrollto" href="#comment_API"> Comment Related </a></li>
+                                        <li><a class="scrollto" href="#reply_API"> Reply Related </a></li>
+                                        
+                                    </ul>
+                                </li>
                                 <li><a class="scrollto" href="#firestore"> Fire Store Schema </a></li>
                                 <li><a class="scrollto" href="#functionality"> Functionality </a></li>
                             </ul><!--//doc-menu-->
