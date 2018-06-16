@@ -72,90 +72,109 @@
                                 </div><!--//section-block-->
                                 <h2 class="section-title">Encryption Research</h2>
                                 <div class="setion-block">
-                                        <h3 class="block-title">Primary Objectives</h3>
-                                        <ol>
-                                            <li>We want to achieve <b>SECRECY</b> of the content during its transmission and storage via and at the server.</li>
-                                            <li>Ensure only the owner of content or friends/authorized personnel of the owner can <b>INTERPRET</b> the content.</li>
-                                            <li>The server, at any point in time, <b>SHOULD NOT</b> be able to <b>INTERPRET</b> the content or be able to derive the tools necessary to decrypt given all the content transmitted under its jurisdiction.</li>
-                                        </ol>
-                                        <h3 class="block-title">Solutions</h3>
-                                        <ol>
-                                            <li>To meet the secrecy objective, we will encrypt the content using <b>SYMMETRIC CRYPTOGRAPHY</b> (aka shared-key cryptography), which is encryption and decryption with a shared secret key, aka content key.</li>
-                                            <li>To meet the limited access objective, only those who have access to the secret key used in <b>SYMMETRIC CRYPTOGRAPHY</b>, can decrypt and interpret the message.</li>
-                                            <li>To facilitate the distribution of the content key used to decrypt and interpret content, we will use <b>ASYMMETRIC CRYPTOGRAPHY</b>(aka public key cryptography), that is encryption with a separate encryption key (public key) and and decryption key (private key).</li>
-                                        </ol>
-                                        <h3 class="block-title">Quick Definitions and Notes</h3>
-                                        <ul>
-                                            <li>Symmetric Cryptography:
+                                    <h3 class="block-title" id="research_one">Primary Objectives</h3>
+                                    <ol>
+                                        <li>We want to achieve <b>SECRECY</b> of the content during its transmission and storage via and at the server.</li>
+                                        <li>Ensure only the owner of content or friends/authorized personnel of the owner can <b>INTERPRET</b> the content.</li>
+                                        <li>The server, at any point in time, <b>SHOULD NOT</b> be able to <b>INTERPRET</b> the content or be able to derive the tools necessary to decrypt given all the content transmitted under its jurisdiction.</li>
+                                    </ol>
+                                    <h3 class="block-title" id="research_two">Solutions</h3>
+                                    <ol>
+                                        <li>To meet the secrecy objective, we will encrypt the content using <b>SYMMETRIC CRYPTOGRAPHY</b> (aka shared-key cryptography), which is encryption and decryption with a shared secret key, aka content key.</li>
+                                        <li>To meet the limited access objective, only those who have access to the secret key used in <b>SYMMETRIC CRYPTOGRAPHY</b>, can decrypt and interpret the message.</li>
+                                        <li>To facilitate the distribution of the content key used to decrypt and interpret content, we will use <b>ASYMMETRIC CRYPTOGRAPHY</b>(aka public key cryptography), that is encryption with a separate encryption key (public key) and and decryption key (private key).</li>
+                                    </ol>
+                                    <h3 class="block-title" id="research_three">Quick Definitions and Notes</h3>
+                                    <ul>
+                                        <li>Symmetric Cryptography:
+                                            <ul>
+                                                <li>Also known as Secret-Key or Shared-Key Cryptography.</li>
+                                                <li>Subjects share a secret key that is used to secure (encrypt and decrypt) their communications.</li></ul>
+                                                <li>For the sake of this project, we want the secret key to be stored on the user’s device.</li>
+                                                <li>During transmission of this key, the server <b>SHOULD NOT</b> be able to know the secret (see the key unencrypted).</li>
+                                            </ul>
+                                        </li>
+                                        <li>Asymmetric Cryptography
+                                            <ul>
+                                                <li>Also known as Public-Key Cryptography.</li>
+                                                <li>Each subject has two keys, public and private key.</li>
+                                                <li>These keys are mathematically special in these sense that, when a message is encrypted using the public key, the encrypted message can only be decrypted with the corresponding private key. This promises a type of encryption where only an intended user can decrypt the encrypted message.</li>
+                                                <li>The public key should be known and available to everyone.</li>
+                                                <li>The private key should be kept safe and secret by the owner.</li>
+                                                <li>Public keys can be used by anyone for “unprivileged” operations.</li>
                                                 <ul>
-                                                    <li>Also known as Secret-Key or Shared-Key Cryptography.</li>
-                                                    <li>Subjects share a secret key that is used to secure (encrypt and decrypt) their communications.</li></ul>
-                                                    <li>For the sake of this project, we want the secret key to be stored on the user’s device.</li>
-                                                    <li>During transmission of this key, the server <b>SHOULD NOT</b> be able to know the secret (see the key unencrypted).</li>
+                                                    <li>Encrypt message for intended receiver.</li>
+                                                    <ul><li>Eg. you use Alice’s public key to encrypt a message meant for Alice (only Alice has the ability to decrypt this message).</li></ul>
+                                                    <li>Verify signature. (This might be useful in the future)</li>
+                                                    <ul><li>Eg. you use Alice’s public key to verify that Alice was the person who signed the signature (with Alice’s private key).</li></ul>
                                                 </ul>
-                                            </li>
-                                            <li>Asymmetric Cryptography
+                                                <li>Private keys are secret and used for “privileged” operations.</li>
                                                 <ul>
-                                                    <li>Also known as Public-Key Cryptography.</li>
-                                                    <li>Each subject has two keys, public and private key.</li>
-                                                    <li>These keys are mathematically special in these sense that, when a message is encrypted using the public key, the encrypted message can only be decrypted with the corresponding private key. This promises a type of encryption where only an intended user can decrypt the encrypted message.</li>
-                                                    <li>The public key should be known and available to everyone.</li>
-                                                    <li>The private key should be kept safe and secret by the owner.</li>
-                                                    <li>Public keys can be used by anyone for “unprivileged” operations.</li>
+                                                    <li>Decrypt message</li>
                                                     <ul>
-                                                        <li>Encrypt message for intended receiver.</li>
-                                                        <ul><li>Eg. you use Alice’s public key to encrypt a message meant for Alice (only Alice has the ability to decrypt this message).</li></ul>
-                                                        <li>Verify signature. (This might be useful in the future)</li>
-                                                        <ul><li>Eg. you use Alice’s public key to verify that Alice was the person who signed the signature (with Alice’s private key).</li></ul>
+                                                        <li>Eg. Alice uses her private key to decrypt a message intended for her (a message that was encrypted using Alice’s public key).</li>
                                                     </ul>
-                                                    <li>Private keys are secret and used for “privileged” operations.</li>
+                                                    <li>Sign message (This might be useful in the future)</li>
                                                     <ul>
-                                                        <li>Decrypt message</li>
-                                                        <ul>
-                                                            <li>Eg. Alice uses her private key to decrypt a message intended for her (a message that was encrypted using Alice’s public key).</li>
-                                                        </ul>
-                                                        <li>Sign message (This might be useful in the future)</li>
-                                                        <ul>
-                                                            <li>Eg. Alice uses her private key to sign a message (such that this message can be verified with Alice’s public key).</li>
-                                                        </ul>
+                                                        <li>Eg. Alice uses her private key to sign a message (such that this message can be verified with Alice’s public key).</li>
                                                     </ul>
-                                                    <li>Generally works on fixed sized inputs.</li>
-                                                    <li>Takes more computationally intensive, resources to perform. Use only when necessary.</li>
                                                 </ul>
-                                            </li>
-                                        </ul>
-                                        <p>Before we can perform the shared key encryption, we need a way to transfer the shared secret key to authorized party. The problem here is that the middle man, in our case, the server handles the transferring of keys, and therefore can see what is transferred, we do not want to server to know the secret key. We also don’t want the server to be able to derive the secret key. Using public key encryption solves the problem.</p>
-                                        
-                                        <h3 class="block-title">Rationale for Public Key Cryptography</h3>
-                                        <p>We decided to go with public key cryptography as it can be seen as an extension/implementation of the diffie hellman key exchange protocol is used correctly. And from previous research, we know that the diffie hellman protocol is efficient in preventing the server from deriving the key. Public key cryptography also makes the key exchange more efficient. The following two links are splendid in explaining first why diffie hellman is neat, and how public key cryptography is an optimization of the diffie hellman idea:</p>
-                                        <ul>
-                                            <li><a href="https://www.youtube.com/watch?v=YEBfamv-_do">Link 1</a></li>
-                                            <li><a href="https://www.youtube.com/watch?v=wXB-V_Keiu8">Link 2</a></li>
-                                        </ul>
+                                                <li>Generally works on fixed sized inputs.</li>
+                                                <li>Takes more computationally intensive, resources to perform. Use only when necessary.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <p>Before we can perform the shared key encryption, we need a way to transfer the shared secret key to authorized party. The problem here is that the middle man, in our case, the server handles the transferring of keys, and therefore can see what is transferred, we do not want to server to know the secret key. We also don’t want the server to be able to derive the secret key. Using public key encryption solves the problem.</p>
+                                    
+                                    <h3 class="block-title" id="research_four">Rationale for Public Key Cryptography</h3>
+                                    <p>We decided to go with public key cryptography as it can be seen as an extension/implementation of the diffie hellman key exchange protocol is used correctly. And from previous research, we know that the diffie hellman protocol is efficient in preventing the server from deriving the key. Public key cryptography also makes the key exchange more efficient. The following two links are splendid in explaining first why diffie hellman is neat, and how public key cryptography is an optimization of the diffie hellman idea:</p>
+                                    <ul>
+                                        <li><a href="https://www.youtube.com/watch?v=YEBfamv-_do">Link 1</a></li>
+                                        <li><a href="https://www.youtube.com/watch?v=wXB-V_Keiu8">Link 2</a></li>
+                                    </ul>
 
-                                        <h3 class="block-title">Key Exchange Protocol API Concepts</h3>
-                                        <ol>
-                                            <li>post_public_key</li>
-                                            <ol type="a">
-                                                <li>Pass in user_id of person invoking api and public_key of this user. (type of string)</li>
-                                                <li>adds/overwrites public key field in firestore pertaining to user.</li>
-                                            </ol>
-                                            <li>Get_public_key</li>
-                                            <ol type="a">
-                                                <li>Pass in user_id of user’s public key you want.</li>
-                                                <li>Accesses firestore and returns the public key</li>
-                                            </ol>
-                                            <li>Send_encrypted_secret</li>
-                                            <ol type="a">
-                                                <li>Pass in user_id of sender, user_id of receiver, and encrypted message in the form of a string.</li>
-                                                <li>To be designed further, may need to discuss the best representation for this. Essentially, we need to put onto the database an encrypted message only intended user can decrypt.</li>
-                                            </ol>
-                                            <li>Recieve_encrypted_secret</li>
-                                            <ol type="a">
-                                                <li>Pass in user_id of receiver, user_id of sender</li>
-                                                <li>Accesses firestore and sees if there is any encrypted secrets that are meant for receiver.</li>
-                                            </ol>
+                                    <h3 class="block-title" id="research_five">Key Exchange Protocol API Concepts</h3>
+                                    <ol>
+                                        <li>post_public_key</li>
+                                        <ol type="a">
+                                            <li>Pass in user_id of person invoking api and public_key of this user. (type of string)</li>
+                                            <li>adds/overwrites public key field in firestore pertaining to user.</li>
                                         </ol>
+                                        <li>Get_public_key</li>
+                                        <ol type="a">
+                                            <li>Pass in user_id of user’s public key you want.</li>
+                                            <li>Accesses firestore and returns the public key</li>
+                                        </ol>
+                                        <li>Send_encrypted_secret</li>
+                                        <ol type="a">
+                                            <li>Pass in user_id of sender, user_id of receiver, and encrypted message in the form of a string.</li>
+                                            <li>To be designed further, may need to discuss the best representation for this. Essentially, we need to put onto the database an encrypted message only intended user can decrypt.</li>
+                                        </ol>
+                                        <li>Recieve_encrypted_secret</li>
+                                        <ol type="a">
+                                            <li>Pass in user_id of receiver, user_id of sender</li>
+                                            <li>Accesses firestore and sees if there is any encrypted secrets that are meant for receiver.</li>
+                                        </ol>
+                                    </ol>
+                                    
+                                    <h3 class="block-title" id="research_six">Implementation References</h3>
+                                    <ul>
+                                        <li><a href="https://blog.patricktriest.com/building-an-encrypted-messenger-with-javascript"/>Building an Encrypted Messenger with Javascript</a></li>
+                                        <li><a href="https://github.com/travist/jsencrypt">Javascript library for Encryption</a></li>
+                                    </ul>
+
+                                    <h3 class="block-title" id="research_seven">Next steps</h3>
+                                    <ul>
+                                        <li>Incorporate encryption as a pre and post processing step when making API calls.</li>
+                                        <li>Design and implement the key exchange related API calls and adjust the database schema to account for the addition of public keys and encrypted content keys.</li>
+                                        <li>Add signing and verification to our key exchange protocol. </li>
+                                        <ul>
+                                            <li>This solves the problem of people (or server in our case) modifying the content of what is sent or impersonating a sender.</li>
+                                            <li>This is a not currently a requirement.</li>
+                                            <li>Switching to this will require a different or separate library that has signing and verification capabilities.</li>
+                                        </ul>
+                                        <li>Front-End should consider using Web Worker to wrap the computationally intensive cryptographic functions for better user experience. Detailed inside Patrick Triest’s blog.</li>
+                                    </ul>
                                 </div> <!--section-block-->
                             </section><!--//doc-section-->
                         </div><!--//content-inner-->
@@ -170,6 +189,15 @@
                                     <li><a class="scrollto" href="#encryption-three">Peer to Third Party Exchange</a></li>
                                 </ul>
                                 <li><a class="scrollto" href="#research">Encryption Research</a></li>
+                                <ul class="nav doc-sub-menu">
+                                    <li><a class="scrollto" href="#research_one">Primary Objectives </a></li>
+                                    <li><a class="scrollto" href="#research_two">Solutions </a></li>
+                                    <li><a class="scrollto" href="#research_three">Quick Definitions and Notes</a></li>
+                                    <li><a class="scrollto" href="#research_four">Rationale for Public Key Cryptography</a></li>
+                                    <li><a class="scrollto" href="#research_five">Key Exchange Protocol API Concepts</a></li>
+                                    <li><a class="scrollto" href="#research_six">Implementation References</a></li>
+                                    <li><a class="scrollto" href="#research_seven">Next Steps </a></li>
+                                </ul>
                             </ul><!--//doc-menu-->
                         </nav>
                     </div><!--//doc-sidebar-->
