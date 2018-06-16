@@ -58,27 +58,93 @@
                     <div class="doc-content">
                         <div class="content-inner">
                             <section id="encryption" class="doc-section">
-                                <h2 class="section-title">Encryption</h2>
+                                <h2 class="section-title">Diagrams</h2>
                                 <div class="section-block">
                                     <h3 class="block-title"></h3>
                                     <div class="screenshot-holder">
-                                      <h2 id="encryption-one">1. Encryption</h2>
-                                      <img class="img-responsive" src="assets/images/progress/XII Board - Encryption1.jpg" alt="screenshot" /></a><br>
-                                      <h2 id="encryption-two">2. Peer to Peer Key Exchange</h2>
-                                      <img class="img-responsive" src="assets/images/progress/XII Board - Encryption2.jpg" alt="screenshot" /></a><br>
-                                      <h2 id="encryption-three">3. Peer to Third-Party to Peer Key Exchange</h2>
-                                      <img class="img-responsive" src="assets/images/progress/XII Board - Encryption3.jpg" alt="screenshot" /></a>
+                                        <h2 id="encryption-one">1. Encryption</h2>
+                                        <img class="img-responsive" src="assets/images/progress/XII Board - Encryption1.jpg" alt="screenshot" /></a><br>
+                                        <h2 id="encryption-two">2. Peer to Peer Key Exchange</h2>
+                                        <img class="img-responsive" src="assets/images/progress/XII Board - Encryption2.jpg" alt="screenshot" /></a><br>
+                                        <h2 id="encryption-three">3. Peer to Third-Party to Peer Key Exchange</h2>
+                                        <img class="img-responsive" src="assets/images/progress/XII Board - Encryption3.jpg" alt="screenshot" /></a>
                                     </div>
                                 </div><!--//section-block-->
+                                <h2 class="section-title">Encryption Research</h2>
+                                <div class="setion-block">
+                                        <h3 class="block-title">Primary Objectives</h3>
+                                        <ol>
+                                            <li>We want to achieve <b>SECRECY</b> of the content during its transmission and storage via and at the server.</li>
+                                            <li>Ensure only the owner of content or friends/authorized personnel of the owner can <b>INTERPRET</b> the content.</li>
+                                            <li>The server, at any point in time, <b>SHOULD NOT</b> be able to <b>INTERPRET</b> the content or be able to derive the tools necessary to decrypt given all the content transmitted under its jurisdiction.</li>
+                                        </ol>
+                                        <h3 class="block-title">Solutions</h3>
+                                        <ol>
+                                            <li>To meet the secrecy objective, we will encrypt the content using <b>SYMMETRIC CRYPTOGRAPHY</b> (aka shared-key cryptography), which is encryption and decryption with a shared secret key, aka content key.</li>
+                                            <li>To meet the limited access objective, only those who have access to the secret key used in <b>SYMMETRIC CRYPTOGRAPHY</b>, can decrypt and interpret the message.</li>
+                                            <li>To facilitate the distribution of the content key used to decrypt and interpret content, we will use <b>ASYMMETRIC CRYPTOGRAPHY</b>(aka public key cryptography), that is encryption with a separate encryption key (public key) and and decryption key (private key).</li>
+                                        </ol>
+                                        <h3 class="block-title">Quick Definitions and Notes</h3>
+                                        <ul>
+                                            <li>Symmetric Cryptography:
+                                                <ul>
+                                                    <li>Also known as Secret-Key or Shared-Key Cryptography.</li>
+                                                    <li>Subjects share a secret key that is used to secure (encrypt and decrypt) their communications.</li></ul>
+                                                    <li>For the sake of this project, we want the secret key to be stored on the user’s device.</li>
+                                                    <li>During transmission of this key, the server <b>SHOULD NOT</b> be able to know the secret (see the key unencrypted).</li>
+                                                </ul>
+                                            </li>
+                                            <li>Asymmetric Cryptography
+                                                <ul>
+                                                    <li>Also known as Public-Key Cryptography.</li>
+                                                    <li>Each subject has two keys, public and private key.</li>
+                                                    <li>These keys are mathematically special in these sense that, when a message is encrypted using the public key, the encrypted message can only be decrypted with the corresponding private key. This promises a type of encryption where only an intended user can decrypt the encrypted message.</li>
+                                                    <li>The public key should be known and available to everyone.</li>
+                                                    <li>The private key should be kept safe and secret by the owner.</li>
+                                                    <li>Public keys can be used by anyone for “unprivileged” operations.</li>
+                                                    <ul>
+                                                        <li>Encrypt message for intended receiver.</li>
+                                                        <ul><li>Eg. you use Alice’s public key to encrypt a message meant for Alice (only Alice has the ability to decrypt this message).</li></ul>
+                                                        <li>Verify signature. (This might be useful in the future)</li>
+                                                        <ul><li>Eg. you use Alice’s public key to verify that Alice was the person who signed the signature (with Alice’s private key).</li></ul>
+                                                    </ul>
+                                                    <li>Private keys are secret and used for “privileged” operations.</li>
+                                                    <ul>
+                                                        <li>Decrypt message</li>
+                                                        <ul>
+                                                            <li>Eg. Alice uses her private key to decrypt a message intended for her (a message that was encrypted using Alice’s public key).</li>
+                                                        </ul>
+                                                        <li>Sign message (This might be useful in the future)</li>
+                                                        <ul>
+                                                            <li>Eg. Alice uses her private key to sign a message (such that this message can be verified with Alice’s public key).</li>
+                                                        </ul>
+                                                    </ul>
+                                                    <li>Generally works on fixed sized inputs.</li>
+                                                    <li>Takes more computationally intensive, resources to perform. Use only when necessary.</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <p>Before we can perform the shared key encryption, we need a way to transfer the shared secret key to authorized party. The problem here is that the middle man, in our case, the server handles the transferring of keys, and therefore can see what is transferred, we do not want to server to know the secret key. We also don’t want the server to be able to derive the secret key. Using public key encryption solves the problem.</p>
+                                        <h3 class="block-title">Rationale for Public Key Cryptography</h3>
+                                        <p>We decided to go with public key cryptography as it can be seen as an extension/implementation of the diffie hellman key exchange protocol is used correctly. And from previous research, we know that the diffie hellman protocol is efficient in preventing the server from deriving the key. Public key cryptography also makes the key exchange more efficient. The following two links are splendid in explaining first why diffie hellman is neat, and how public key cryptography is an optimization of the diffie hellman idea:</p>
+                                        <ul>
+                                            <li><a href="https://www.youtube.com/watch?v=YEBfamv-_do">Link 1</a></li>
+                                            <li><a href="https://www.youtube.com/watch?v=wXB-V_Keiu8">Link 2</a></li>
+                                        </ul>
+                                </div> <!--section-block-->
                             </section><!--//doc-section-->
                         </div><!--//content-inner-->
                     </div><!--//doc-content-->
                     <div class="doc-sidebar">
                         <nav id="doc-nav">
                             <ul id="doc-menu" class="nav doc-menu hidden-xs" data-spy="affix">
-                                <li><a class="scrollto" href="#encryption-one">Encryption</a></li>
-                                <li><a class="scrollto" href="#encryption-two">Peer to Peer Exchange</a></li>
-                                <li><a class="scrollto" href="#encryption-three">Peer to Third Party Exchange</a></li>
+                                <li><a class="scrollto" href="#encryption-one">Diagrams</a></li>
+                                <ul class="nav doc-sub-menu">
+                                    <li><a class="scrollto" href="#encryption-one">Encryption</a></li>
+                                    <li><a class="scrollto" href="#encryption-two">Peer to Peer Exchange</a></li>
+                                    <li><a class="scrollto" href="#encryption-three">Peer to Third Party Exchange</a></li>
+                                </ul>
+                                <li><a class="scrollto" href="#research">Encryption Research</a></li>
                             </ul><!--//doc-menu-->
                         </nav>
                     </div><!--//doc-sidebar-->
