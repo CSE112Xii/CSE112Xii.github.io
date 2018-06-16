@@ -125,12 +125,37 @@
                                             </li>
                                         </ul>
                                         <p>Before we can perform the shared key encryption, we need a way to transfer the shared secret key to authorized party. The problem here is that the middle man, in our case, the server handles the transferring of keys, and therefore can see what is transferred, we do not want to server to know the secret key. We also don’t want the server to be able to derive the secret key. Using public key encryption solves the problem.</p>
+                                        
                                         <h3 class="block-title">Rationale for Public Key Cryptography</h3>
                                         <p>We decided to go with public key cryptography as it can be seen as an extension/implementation of the diffie hellman key exchange protocol is used correctly. And from previous research, we know that the diffie hellman protocol is efficient in preventing the server from deriving the key. Public key cryptography also makes the key exchange more efficient. The following two links are splendid in explaining first why diffie hellman is neat, and how public key cryptography is an optimization of the diffie hellman idea:</p>
                                         <ul>
                                             <li><a href="https://www.youtube.com/watch?v=YEBfamv-_do">Link 1</a></li>
                                             <li><a href="https://www.youtube.com/watch?v=wXB-V_Keiu8">Link 2</a></li>
                                         </ul>
+
+                                        <h3 class="block-title">Key Exchange Protocol API Concepts</h3>
+                                        <ol>
+                                            <li>post_public_key</li>
+                                            <ol type="a">
+                                                <li>Pass in user_id of person invoking api and public_key of this user. (type of string)</li>
+                                                <li>adds/overwrites public key field in firestore pertaining to user.</li>
+                                            </ol>
+                                            <li>Get_public_key</li>
+                                            <ol type="a">
+                                                <li>Pass in user_id of user’s public key you want.</li>
+                                                <li>Accesses firestore and returns the public key</li>
+                                            </ol>
+                                            <li>Send_encrypted_secret</li>
+                                            <ol type="a">
+                                                <li>Pass in user_id of sender, user_id of receiver, and encrypted message in the form of a string.</li>
+                                                <li>To be designed further, may need to discuss the best representation for this. Essentially, we need to put onto the database an encrypted message only intended user can decrypt.</li>
+                                            </ol>
+                                            <li>Recieve_encrypted_secret</li>
+                                            <ol type="a">
+                                                <li>Pass in user_id of receiver, user_id of sender</li>
+                                                <li>Accesses firestore and sees if there is any encrypted secrets that are meant for receiver.</li>
+                                            </ol>
+                                        </ol>
                                 </div> <!--section-block-->
                             </section><!--//doc-section-->
                         </div><!--//content-inner-->
